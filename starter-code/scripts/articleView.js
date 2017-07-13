@@ -42,20 +42,15 @@ articleView.handleAuthorFilter = function() {
       //       Use an "attribute selector" to find those articles, and fade them in for the reader.
       $('article').hide();
 
-      var $xee = $('#author-filter').val();
-
-
-      $("article:eq(3)").show();
-
-
-
-      $( "article data[author *=" + $xee + "]" ).show();
+      $( 'article[data-author="' + $(this).val() + '"]' ).show();
 
 
     } else {
       // TODO: If the select box was changed to an option that is blank, we should
       //       show all the articles, except the one article we are using as a template.
       $('article').show();
+      $('article.template').hide();
+
     }
     $('#category-filter').val('');
   });
@@ -90,9 +85,7 @@ articleView.handleMainNav = function() {
   $('.main-nav .tab').on('click', function () {
     $('.tab-content').hide();
 
-
-
-    $('#data-content').fadeIn();
+    $('#' + $(this).data('content')).fadeIn();
 
 
   });
